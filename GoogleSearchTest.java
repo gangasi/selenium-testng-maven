@@ -31,6 +31,10 @@ public class GoogleSearchTest {
         Thread.sleep(2000);
         String title = driver.getTitle().toLowerCase();
         assert title.contains("selenium") || title.contains("search") : "Expected title to contain 'selenium' or 'search', but got: " + title;
+File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+Files.copy(screenshot.toPath(), new File("screenshot.png").toPath());
+System.out.println("Saved screenshot to screenshot.png");
+System.out.println(driver.getPageSource());
     }
 
     @AfterClass
